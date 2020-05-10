@@ -1,0 +1,125 @@
+{
+  "name": "client",
+  "values": [
+    {
+      "id": 1234,
+      "name": "apple",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 43131123,
+      "name": "google",
+      "number": 23521,
+      "account": 4534231,
+      "inDebt": true,
+      "created": "2019-11-21 10:11:21.001"
+    },
+    {
+      "id": 87654309,
+      "name": "gucli",
+      "number": 5432,
+      "account": 987351345,
+      "inDebt": true,
+      "created": "2020-03-10 07:11:21.001"
+    },
+    {
+      "id": 12349,
+      "name": "grenki",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12340,
+      "name": "way",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12341,
+      "name": "asm",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12342,
+      "name": "creator",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12343,
+      "name": "cratos",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12344,
+      "name": "greek",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 12345,
+      "name": "chelentano",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 5555555,
+      "name": "trump",
+      "number": 987654321,
+      "account": 123456789,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 11111111,
+      "name": "putin",
+      "number": 4567,
+      "account": 567894321,
+      "inDebt": true,
+      "created": "1990-12-20 15:15:15.001"
+    },
+    {
+      "id": 983024357,
+      "name": "pulya",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:32.001"
+    },
+    {
+      "id": 5443216,
+      "name": "chlenulya",
+      "number": 43729,
+      "account": 98461234,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:21.001"
+    },
+    {
+      "id": 43215,
+      "name": "polupoker",
+      "number": 4567,
+      "account": 123456789654,
+      "inDebt": true,
+      "created": "2020-01-20 17:11:31.001"
+    }
+  ]
+}

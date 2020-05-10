@@ -1,0 +1,29 @@
+{
+  "name": "client",
+  "columns": [
+    {
+      "name": "id",
+      "type": "DecimalType"
+    },
+    {
+      "name": "name",
+      "type": "StringType"
+    },
+    {
+      "name": "number",
+      "type": "DecimalType"
+    },
+    {
+      "name": "account",
+      "type": "DecimalType"
+    },
+    {
+      "name": "inDebt",
+      "type": "BooleanType"
+    },
+    {
+      "name": "created",
+      "type": "TimestampType"
+    }
+  ]
+}

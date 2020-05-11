@@ -3,27 +3,45 @@
   "columns": [
     {
       "name": "id",
-      "type": "DecimalType"
+      "type": {
+        "type": "DecimalType",
+        "scale": 12,
+        "precision": 38
+      }
     },
     {
       "name": "name",
-      "type": "StringType"
+      "type": {
+        "type": "StringType"
+      }
     },
     {
       "name": "number",
-      "type": "DecimalType"
+     "type": {
+      "type": "DecimalType",
+      "scale": 12,
+      "precision": 38
+    }
     },
     {
       "name": "account",
-      "type": "DecimalType"
+      "type": {
+        "type": "DecimalType",
+        "scale": 12,
+        "precision": 38
+      }
     },
     {
       "name": "inDebt",
-      "type": "BooleanType"
+      "type": {
+        "type": "BooleanType"
+      }
     },
     {
       "name": "created",
-      "type": "TimestampType"
+      "type": {
+        "type": "TimestampType"
+      }
     }
   ]
 }

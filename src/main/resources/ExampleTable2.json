@@ -1,0 +1,21 @@
+{
+  "name": "client",
+  "values": [
+    {
+      "id": 1234,
+      "country": "Africa"
+    },
+    {
+      "id": 43131123,
+      "country": "Atlantida"
+    },
+    {
+      "id": 87654309,
+      "country": "UK"
+    },
+    {
+      "id": 12349,
+      "country": "USA"
+    }
+  ]
+}

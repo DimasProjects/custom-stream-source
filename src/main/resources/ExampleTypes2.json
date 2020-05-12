@@ -1,0 +1,19 @@
+{
+  "name": "client",
+  "columns": [
+    {
+      "name": "id",
+      "type": {
+        "type": "DecimalType",
+        "scale": 12,
+        "precision": 38
+      }
+    },
+    {
+      "name": "country",
+      "type": {
+        "type": "StringType"
+      }
+    }
+  ]
+}

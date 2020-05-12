@@ -89,7 +89,8 @@ public class JsonSource implements Source {
                 JavaConversions.asScalaBuffer(rows),
                 sqlContext.sparkContext().defaultParallelism(),
                 tag);
-        return sqlContext.internalCreateDataFrame(internalRowRDD, schema(), true);
+//        return sqlContext.internalCreateDataFrame(internalRowRDD, schema(), true); for spark > 2.2.0 (installed in sb-env)
+        return sqlContext.internalCreateDataFrame(internalRowRDD, schema());
     }
 
     @Override

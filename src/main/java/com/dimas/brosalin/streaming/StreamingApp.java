@@ -3,6 +3,7 @@ package com.dimas.brosalin.streaming;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.functions;
 import org.apache.spark.sql.streaming.OutputMode;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 
@@ -20,9 +21,12 @@ public class StreamingApp {
                 .option("schema", pathToMetaFile)
                 .load();
 
-        reader.writeStream()
+        reader.filter(functions.col("name").isin("google", "apple", "gucli", "pulya"))
+                .groupBy(functions.col("number"))
+                .count()
+                .writeStream()
                 .format("console")
-                .outputMode(OutputMode.Append())
+                .outputMode(OutputMode.Complete())
                 .start()
                 .awaitTermination();
     }

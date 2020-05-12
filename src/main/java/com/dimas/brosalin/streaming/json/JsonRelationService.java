@@ -8,13 +8,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
+import org.apache.spark.sql.catalyst.InternalRow;
+import org.apache.spark.sql.catalyst.expressions.GenericInternalRow;
 import org.apache.spark.sql.types.*;
+import org.apache.spark.unsafe.types.UTF8String;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +47,11 @@ public class JsonRelationService {
     public static Optional<JsonNode> tableContentProvider(Optional<String> pathToTable){
         JsonNode jsonNode = null;
         if(pathToTable.isPresent()){
+            System.out.println("INSIDE tableContentProvider: " + pathToTable.get());
             try{
                 jsonNode = objectMapper.readTree(new File(pathToTable.get()));
             }catch (IOException ex){
+                System.out.println("EXCEPTION: " + ex.getMessage());
                 log.info("Exception has been oocured while reading table content: {}", ex.getMessage());
             }
         }
@@ -80,7 +84,8 @@ public class JsonRelationService {
     public static Optional<DataType> structTypeProvider(MetaType type){
         DataType curStructType = null;
         if(type.getType().equalsIgnoreCase("DecimalType")){
-            curStructType = DataTypes.createDecimalType(type.getPrecision(), type.getScale());
+//            curStructType = DataTypes.createDecimalType(type.getPrecision(), type.getScale());
+            curStructType = DataTypes.StringType;
         }else if(type.getType().equalsIgnoreCase("StringType")){
             curStructType = DataTypes.StringType;
         }else if(type.getType().equalsIgnoreCase("BooleanType")){
@@ -92,13 +97,25 @@ public class JsonRelationService {
     }
 
     public static Row rowProvider(JsonNode jsonNode, List<StructField> structFieldList){
+        Object[] objects = jsonNodeToObjectRow(jsonNode, structFieldList);
+        return RowFactory.create(objects);
+    }
+
+    public static InternalRow internalRowProvider(JsonNode jsonNode, List<StructField> structFieldList){
+        Object[] objects = jsonNodeToObjectRow(jsonNode, structFieldList);
+        return new GenericInternalRow(objects);
+    }
+
+    public static Object[] jsonNodeToObjectRow(JsonNode jsonNode, List<StructField> structFieldList){
         Object[] objects = new Object[structFieldList.size()];
         structFieldList.forEach(field -> {
             int indx = structFieldList.indexOf(field);
             if(field.dataType() instanceof DecimalType) {
-                objects[indx] = new BigDecimal(jsonNode.get(field.name()).asText());
+//                objects[indx] = new BigDecimal(jsonNode.get(field.name()).asText());
+                objects[indx] = UTF8String.fromString(jsonNode.get(field.name()).asText());
             }else if(field.dataType() instanceof TimestampType){
-                objects[indx] = Timestamp.valueOf(jsonNode.get(field.name()).asText());
+//                objects[indx] = Timestamp.valueOf(jsonNode.get(field.name()).asText());
+                objects[indx] = Timestamp.valueOf(jsonNode.get(field.name()).asText()).getTime();
             }else if(field.dataType() instanceof BooleanType){
                 objects[indx] = Boolean.valueOf(jsonNode.get(field.name()).asText());
             }else if(field.dataType() instanceof FloatType){
@@ -106,10 +123,10 @@ public class JsonRelationService {
             }else if(field.dataType() instanceof LongType){
                 objects[indx] = Long.valueOf(jsonNode.get(field.name()).asText());
             }else if(field.dataType() instanceof StringType){
-                objects[indx] = jsonNode.get(field.name()).asText();
+                objects[indx] = UTF8String.fromString(jsonNode.get(field.name()).asText());
             }
         });
-        return RowFactory.create(objects);
+        return objects;
     }
 
 }

@@ -24,13 +24,16 @@ public class CustomStreamingSource implements StreamSourceProvider, DataSourceRe
     @Override
     public Tuple2<String, StructType> sourceSchema(SQLContext sqlContext, Option<StructType> schema,
                                                    String providerName, Map<String, String> parameters) {
-        JsonSource jsonSource = new JsonSource(sqlContext, JavaConversions.mapAsJavaMap(parameters));
-        return new Tuple2<>(shortName(), jsonSource.schema());
+        System.out.println("\n\nPARAMETERS: " + parameters);
+        System.out.println("\n\nPARAMETERS: " + JavaConversions.mapAsJavaMap(parameters));
+        return new Tuple2<>(shortName(), JsonSource.createStructType(JavaConversions.mapAsJavaMap(parameters)));
     }
 
     @Override
     public Source createSource(SQLContext sqlContext, String metadataPath, Option<StructType> schema,
                                String providerName, Map<String, String> parameters) {
+        System.out.println("\n\nPARAMETERS 2: " + parameters);
+        System.out.println("\n\nPARAMETERS 2: " + JavaConversions.mapAsJavaMap(parameters));
         return new JsonSource(sqlContext, JavaConversions.mapAsJavaMap(parameters));
     }
 }

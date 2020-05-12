@@ -3,7 +3,6 @@ package com.dimas.brosalin.streaming;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.streaming.DataStreamReader;
 import org.apache.spark.sql.streaming.OutputMode;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 
@@ -23,7 +22,7 @@ public class StreamingApp {
 
         reader.writeStream()
                 .format("console")
-                .outputMode(OutputMode.Complete())
+                .outputMode(OutputMode.Append())
                 .start()
                 .awaitTermination();
     }
